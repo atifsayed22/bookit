@@ -52,7 +52,6 @@ const BookingPage = () => {
       setError(null);
 
       try {
-        console.log('🔄 Loading travel agency details for:', agencyId);
         
         const response = await axiosInstance.get(`/customers/agencies/${agencyId}`);
         
@@ -69,7 +68,6 @@ const BookingPage = () => {
             }));
           }
           
-          console.log('✅ Travel agency details loaded');
         } else {
           throw new Error(response.data.message || 'Travel agency not found');
         }
@@ -252,7 +250,6 @@ const BookingPage = () => {
     setError(null);
 
     try {
-      console.log('✈️ Booking travel package...', bookingData);
       
       const totalAmount = subtotal - promoDiscount;
       
@@ -270,7 +267,6 @@ const BookingPage = () => {
       });
 
       if (response.data.success) {
-        console.log('✅ Travel package booked successfully');
         navigate('/customer/bookings', { 
           state: { message: 'Travel package booked successfully!' }
         });

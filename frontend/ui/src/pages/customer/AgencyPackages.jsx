@@ -34,7 +34,7 @@ const AgencyPackages = () => {
       setError(null);
 
       try {
-        console.log("🔄 Loading agency packages for:", agencyId);
+
 
         const response = await axiosInstance.get(
           `/customers/agencies/${agencyId}`
@@ -43,7 +43,6 @@ const AgencyPackages = () => {
         if (response.data.success) {
           setAgency(response.data.agency || response.data.business);
           setPackages(response.data.packages || response.data.services || []);
-          console.log("✅ Agency packages loaded:", response.data.agency);
         } else {
           throw new Error(response.data.message || "Agency not found");
         }

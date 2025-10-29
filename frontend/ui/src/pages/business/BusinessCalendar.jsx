@@ -2,15 +2,7 @@ import { useState, useEffect } from 'react';
 import { useUser } from '@clerk/clerk-react';
 import axiosInstance from '../../axiosInstance';
 
-/**
- * Business Calendar Page
- * 
- * Learning Concepts:
- * 1. Calendar UI - Building custom calendar components
- * 2. Date Mathematics - Date calculations and comparisons
- * 3. Event Visualization - Displaying events on calendar grid
- * 4. Interactive UI - Click handlers and hover states
- */
+
 
 const BusinessCalendar = () => {
   const { user } = useUser();
@@ -20,14 +12,6 @@ const BusinessCalendar = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [viewMode, setViewMode] = useState('month'); // month, week, day
 
-  /**
-   * Load appointments for the current month
-   * 
-   * Learning: Date range queries
-   * - Month start/end calculations
-   * - API optimization with date ranges
-   * - Calendar data loading patterns
-   */
   useEffect(() => {
     const loadAppointments = async () => {
       if (user?.id) {
@@ -58,14 +42,7 @@ const BusinessCalendar = () => {
     loadAppointments();
   }, [user, currentDate]);
 
-  /**
-   * Calendar utility functions
-   * 
-   * Learning: Date manipulation utilities
-   * - Pure functions for date calculations
-   * - Reusable calendar logic
-   * - Cross-browser date handling
-   */
+  
   const getCalendarDays = () => {
     const year = currentDate.getFullYear();
     const month = currentDate.getMonth();
@@ -105,14 +82,7 @@ const BusinessCalendar = () => {
     );
   };
 
-  /**
-   * Navigation functions
-   * 
-   * Learning: State management for navigation
-   * - Immutable date updates
-   * - Month/year calculations
-   * - UI state synchronization
-   */
+  
   const navigateMonth = (direction) => {
     setCurrentDate(prev => {
       const newDate = new Date(prev);
@@ -141,40 +111,19 @@ const BusinessCalendar = () => {
     });
   };
 
-  /**
-   * Check if date is today
-   * 
-   * Learning: Date comparison utility
-   * - Cross-timezone handling
-   * - Performance optimization
-   * - Reusable logic
-   */
+  
   const isToday = (date) => {
     const today = new Date();
     return date.toDateString() === today.toDateString();
   };
 
-  /**
-   * Check if date is in current month
-   * 
-   * Learning: Month boundary detection
-   * - Calendar UI logic
-   * - Visual state management
-   * - Date range validation
-   */
+ 
   const isCurrentMonth = (date) => {
     return date.getMonth() === currentDate.getMonth() && 
            date.getFullYear() === currentDate.getFullYear();
   };
 
-  /**
-   * Get appointment status color
-   * 
-   * Learning: Status visualization
-   * - Color coding systems
-   * - Accessibility considerations
-   * - Consistent theming
-   */
+ 
   const getStatusColor = (status) => {
     const colors = {
       pending: 'bg-yellow-400',
