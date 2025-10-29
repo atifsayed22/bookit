@@ -1,8 +1,6 @@
 import express from "express";
 import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
 import {
-  getCustomerProfile,
-  updateCustomerProfile,
   browseBusiness,
   getBusinessDetails,
   bookAppointment,
@@ -14,11 +12,6 @@ const router = express.Router();
 
 // Apply authentication middleware to all routes
 router.use(ClerkExpressRequireAuth());
-
-// Customer profile routes
-router.get("/profile", getCustomerProfile);
-router.post("/profile", updateCustomerProfile);
-router.put("/profile", updateCustomerProfile);
 
 // Business/Agency search and discovery
 router.get("/businesses/search", browseBusiness);

@@ -82,10 +82,8 @@ export const updateAppointmentStatus = async (req, res) => {
       ![
         "pending",
         "confirmed",
-        "in-progress",
-        "completed",
         "cancelled",
-        "no-show",
+
       ].includes(status)
     ) {
       return res.status(400).json({ message: "Invalid status" });

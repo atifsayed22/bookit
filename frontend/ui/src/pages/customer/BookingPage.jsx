@@ -152,21 +152,34 @@ const BookingPage = () => {
       return;
     }
 
-    try {
-      const response = await axiosInstance.post('/customers/validate-promo', {
-        promoCode: code.trim(),
-        packageId: bookingData.packageId,
-        subtotal
-      });
+    if (!bookingData.packageId) {
+      setPromoCodeStatus('Please select a package first');
+      return;
+    }
 
-      if (response.data.success) {
-        setPromoDiscount(response.data.discount);
+    try {
+      // Find the selected package
+      const selectedPackage = packages.find(p => p._id === bookingData.packageId);
+      
+      if (!selectedPackage) {
+        setPromoCodeStatus('Package not found');
+        return;
+      }
+
+      // Check if the package has promo code enabled and matches
+      if (selectedPackage.promoCodeActive && 
+          selectedPackage.promoCode && 
+          selectedPackage.promoCode.toUpperCase() === code.trim().toUpperCase()) {
+        
+        const discountAmount = (subtotal * selectedPackage.promoDiscount) / 100;
+        setPromoDiscount(discountAmount);
         setPromoCodeStatus('valid');
       } else {
         setPromoDiscount(0);
         setPromoCodeStatus('invalid');
       }
     } catch (error) {
+      console.error('Error validating promo code:', error);
       setPromoDiscount(0);
       setPromoCodeStatus('invalid');
     }
@@ -425,14 +438,31 @@ const BookingPage = () => {
                 
                 {/* Package Details Preview */}
                 {bookingData.packageId && packages.find(p => p._id === bookingData.packageId) && (
-                  <div className="mt-3 p-3 bg-blue-50 rounded-lg text-sm">
-                    <p className="font-medium text-blue-900">Package Highlights:</p>
-                    <p className="text-blue-700">
-                      📍 {packages.find(p => p._id === bookingData.packageId).destination}
-                    </p>
-                    <p className="text-blue-700">
-                      📅 {packages.find(p => p._id === bookingData.packageId).durationDays} days / {packages.find(p => p._id === bookingData.packageId).durationDays - 1} nights
-                    </p>
+                  <div className="mt-3 space-y-3">
+                    <div className="p-3 bg-blue-50 rounded-lg text-sm">
+                      <p className="font-medium text-blue-900">Package Highlights:</p>
+                      <p className="text-blue-700">
+                        📍 {packages.find(p => p._id === bookingData.packageId).destination}
+                      </p>
+                      <p className="text-blue-700">
+                        📅 {packages.find(p => p._id === bookingData.packageId).durationDays} days / {packages.find(p => p._id === bookingData.packageId).durationDays - 1} nights
+                      </p>
+                    </div>
+                    
+                    {/* Promo Code Available */}
+                    {(() => {
+                      const selectedPackage = packages.find(p => p._id === bookingData.packageId);
+                      return selectedPackage?.promoCodeActive && selectedPackage?.promoCode ? (
+                        <div className="p-3 bg-green-50 rounded-lg text-sm border border-green-200">
+                          <p className="font-medium text-green-900 flex items-center">
+                            🎯 Special Offer Available!
+                          </p>
+                          <p className="text-green-700 mt-1">
+                            Use promo code <strong>{selectedPackage.promoCode}</strong> to get {selectedPackage.promoDiscount}% off this package!
+                          </p>
+                        </div>
+                      ) : null;
+                    })()}
                   </div>
                 )}
               </div>

@@ -7,22 +7,8 @@ const addressSchema = new mongoose.Schema({
     zipcode:String,
     country:String
 })
-const dayHoursSchema = new mongoose.Schema({
-    open:{type:String,default:"09:00"},
-    close:{type:String,default:"17:00"},
-    closed:{type:Boolean,default:false}
-})
-const hoursSchema = new mongoose.Schema({
 
 
-  monday: { type: dayHoursSchema, default: () => ({}) },
-  tuesday: { type: dayHoursSchema, default: () => ({}) },
-  wednesday: { type: dayHoursSchema, default: () => ({}) },
-  thursday: { type: dayHoursSchema, default: () => ({}) },
-  friday: { type: dayHoursSchema, default: () => ({}) },
-  saturday: { type: dayHoursSchema, default: () => ({}) },
-  sunday: { type: dayHoursSchema, default: () => ({}) },
-},{ _id: false })
 const socialSchema = new mongoose.Schema({
     facebook:String,
     instagram:String,
@@ -50,11 +36,7 @@ const businessSchema = new mongoose.Schema({
     phone:{type:String,required:true},
     website:{type:String},
     imageUrl:{type:String}, // Agency image
-    licenseNumber:{type:String},
-    yearEstablished:{type:Number},
-    specializations:{type:[String],default:[]},
     address:{type:addressSchema,default: () => ({}) },
-     hours: { type: hoursSchema, default: () => ({}) },
     socialMedia: { type: socialSchema, default: () => ({}) },
 
 

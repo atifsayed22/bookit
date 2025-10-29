@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useUser } from "@clerk/clerk-react";
 import axiosInstance from "../../axiosInstance";
+import { CheckCircle, XCircle } from "lucide-react";
 
 /**
  * Appointments Management Page
@@ -140,7 +141,7 @@ const Appointments = () => {
       pending: appointments.filter((a) => a.status === "pending").length,
       confirmed: appointments.filter((a) => a.status === "confirmed").length,
       revenue: appointments
-        .filter((a) => a.status === "completed")
+        .filter((a) => a.status === "confirmed")
         .reduce((sum, a) => sum + (a.totalPrice || 0), 0),
     };
   }, [appointments]);
@@ -299,14 +300,14 @@ const Appointments = () => {
                               className="p-2 hover:text-green-600 transition-colors"
                               title="Confirm Booking"
                             >
-                              <i className="fas fa-check-circle text-lg" />
+                               <CheckCircle className="w-4 h-4" /> Accept
                             </button>
                             <button
                               onClick={() => handleStatusUpdate(apt._id, "cancelled")}
                               className="p-2 hover:text-red-600 transition-colors"
                               title="Cancel Booking"
                             >
-                              <i className="fas fa-times-circle text-lg" />
+                              <XCircle className="w-4 h-4" /> Reject
                             </button>
                           </div>
                         )}

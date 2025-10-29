@@ -1,14 +1,5 @@
 import mongoose from "mongoose";
 
-const itineraryItemSchema = new mongoose.Schema({
-    day: { type: Number, required: true },
-    title: String,
-    description: String,
-    activities: [String],
-    accommodation: String,
-    meals: [String]
-}, { _id: false });
-
 const serviceSchema = new mongoose.Schema({
     business:{type:mongoose.Schema.Types.ObjectId, ref:'Business',required:true,index:true},
     packageName:{type:String,required:true}, // Changed from 'name'
@@ -28,13 +19,13 @@ const serviceSchema = new mongoose.Schema({
     },
     inclusions:[String], // What's included in the package
     exclusions:[String], // What's not included
-    itinerary:[itineraryItemSchema], // Day-by-day itinerary
-    maxGroupSize:{type:Number,default:10},
-    minAge:{type:Number,default:0},
-    difficulty:{type:String,enum:['Easy','Moderate','Challenging','Expert'],default:'Easy'},
     images:[String], // Package images
     availableDates:[Date], // Available departure dates
-    isActive:{type:Boolean,default:true}
+    isActive:{type:Boolean,default:true},
+    // Promo Code fields
+    promoCode: { type: String, default: "" }, // Promo code for discounts
+    promoDiscount: { type: Number, default: 0, min: 0, max: 50 }, // Discount percentage
+    promoCodeActive: { type: Boolean, default: false } // Whether promo is currently active
 
 },{timestamps:true})
 

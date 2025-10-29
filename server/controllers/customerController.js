@@ -6,65 +6,6 @@ import Appointment from "../models/Appointment.js";
 
 const getCustomer = (ownerClerkId) => Customer.findOne({ ownerClerkId });
 
-// Get customer profile
-export const getCustomerProfile = async (req, res) => {
-  try {
-    console.log("🔍 getCustomerProfile called - auth:", req.auth);
-    
-    // Get basic user info
-    const user = await User.findOne({ clerkId: req.auth.userId });
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-    
-    // Get customer profile
-    const customer = await Customer.findOne({ ownerClerkId: req.auth.userId });
-    
-    res.json({ 
-      success: true, 
-      user,
-      customer: customer || null
-    });
-  } catch (err) {
-    console.error("getCustomerProfile error:", err);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
-// Create or update customer profile
-export const updateCustomerProfile = async (req, res) => {
-  try {
-    console.log("🔍 updateCustomerProfile called");
-    console.log("🔍 Body:", req.body);
-    
-    const ownerClerkId = req.auth.userId;
-    
-    // Check if customer profile exists
-    let customer = await Customer.findOne({ ownerClerkId });
-    
-    if (customer) {
-      // Update existing customer
-      const updates = { ...req.body };
-      customer = await Customer.findOneAndUpdate(
-        { ownerClerkId },
-        { $set: updates },
-        { new: true }
-      );
-    } else {
-      // Create new customer profile
-      customer = await Customer.create({
-        ownerClerkId,
-        ...req.body
-      });
-    }
-    
-    res.json({ success: true, customer });
-  } catch (err) {
-    console.error("updateCustomerProfile error:", err);
-    res.status(400).json({ message: "Error updating profile", details: err.message });
-  }
-};
-
 // Browse businesses (with search and filters)
 export const browseBusiness = async (req, res) => {
   try {
@@ -320,8 +261,8 @@ export const getMyAppointments = async (req, res) => {
     }
     
     const appointments = await Appointment.find(filter)
-      .populate('serviceId', 'name category destination duratoinDays durationMinutes price')
-      .populate('businessId', 'name address phone email')
+      .populate('serviceId', 'name category destination images durationDays durationMinutes price')
+      .populate('businessId', 'agencyName businessName address imageUrl phone email')
       .sort({ appointmentDate: -1, startTime: -1 })
       .limit(limit * 1)
       .skip((page - 1) * limit);
@@ -367,8 +308,8 @@ export const cancelAppointment = async (req, res) => {
         }
       },
       { new: true }
-    ).populate('serviceId', 'name category durationMinutes price')
-     .populate('businessId', 'name address phone email');
+    ).populate('serviceId', 'name category images durationMinutes price')
+     .populate('businessId', 'name imageUrl address phone email');
     
     if (!appointment) {
       return res.status(404).json({ message: "Appointment not found or cannot be cancelled" });

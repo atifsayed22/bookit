@@ -2,7 +2,6 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { SignIn, SignUp, SignedOut, SignedIn } from "@clerk/clerk-react";
 import Browse from "./pages/customer/Browse";
 import MyBookings from "./pages/customer/MyBookings";
-import CustomerProfile from "./pages/customer/CustomerProfile";
 import BookingPage from "./pages/customer/BookingPage";
 import AgencyPackages from "./pages/customer/AgencyPackages";
 import BusinessProfile from "./pages/business/BusinessProfile";
@@ -86,16 +85,6 @@ function App() {
             element={
               <ProtectedRoute>
                 <MyBookings />
-              </ProtectedRoute>
-            }
-          />
-          
-          {/* Customer Profile Page */}
-          <Route
-            path="/customer/profile"
-            element={
-              <ProtectedRoute>
-                <CustomerProfile />
               </ProtectedRoute>
             }
           />
