@@ -17,7 +17,7 @@ connectDB();
 const app = express();
 
 app.use(cors({
-  origin: 'https://your-frontend-url.vercel.app', // replace with your actual frontend URL
+  origin: 'http://localhost:5173', // or your frontend port
   credentials: true
 }));
 app.use(express.json({ limit: '10mb' }));
