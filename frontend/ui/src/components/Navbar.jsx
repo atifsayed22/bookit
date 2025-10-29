@@ -9,14 +9,14 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [userRole, setUserRole] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-  const { user, isLoaded } = useAuth();
+  const { user, isLoaded, isSignedIn } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
   // 🔹 Fetch & sync user role
   useEffect(() => {
     const loadUserRole = async () => {
-      if (isLoaded && user?.id) {
+      if (isLoaded && isSignedIn && user?.id) {
         try {
           await axiosInstance.post("/users/sync", {
             clerkId: user.id,
@@ -33,7 +33,7 @@ const Navbar = () => {
       setIsLoading(false);
     };
     loadUserRole();
-  }, [user, isLoaded]);
+  }, [user, isLoaded, isSignedIn]);
 
   const navConfig = {
     customer: [

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-    baseURL: "https://bookit-g5el.onrender.com"
+    baseURL: "https://bookit-g5el.onrender.com/api"
 });
 
 // Add Clerk token to every request
