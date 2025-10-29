@@ -23,7 +23,10 @@ function App() {
             element={
               <>
                 <SignedOut>
-                  <div className="flex justify-center items-center h-screen bg-gray-100">
+                  <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
+                    <div className="mb-4 p-3 bg-yellow-100 text-yellow-800 rounded text-center max-w-md">
+                      <b>Note:</b> The backend is deployed on Render. After login or signup, it may take a few seconds to wake up and respond. Please be patient if you experience a short delay.
+                    </div>
                     <SignIn 
                       redirectUrl="/select-role"
                       signUpUrl="/sign-up"
@@ -41,7 +44,10 @@ function App() {
             element={
               <>
                 <SignedOut>
-                  <div className="flex justify-center items-center h-screen bg-gray-100">
+                  <div className="flex flex-col justify-center items-center h-screen bg-gray-100">
+                    <div className="mb-4 p-3 bg-yellow-100 text-yellow-800 rounded text-center max-w-md">
+                      <b>Note:</b> The backend is deployed on Render. After login or signup, it may take a few seconds to wake up and respond. Please be patient if you experience a short delay.
+                    </div>
                     <SignUp 
                       redirectUrl="/select-role"
                       signInUrl="/"
