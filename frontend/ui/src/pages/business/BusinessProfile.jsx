@@ -11,7 +11,6 @@ const BusinessProfile = () => {
 
   const [profile, setProfile] = useState({
     agencyName: '',
-    businessName: '',
     description: '',
     category: '',
     email: '',
@@ -197,8 +196,8 @@ const BusinessProfile = () => {
               <input
                 type="text"
                 required
-                value={profile.businessName}
-                onChange={(e) => handleInputChange('businessName', e.target.value)}
+                value={profile.agencyName}
+                onChange={(e) => handleInputChange('agencyName', e.target.value)}
                 className="w-full px-3 py-2 border border-gray-300 rounded-md"
                 placeholder="Enter your business name"
               />
