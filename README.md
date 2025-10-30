@@ -1,9 +1,9 @@
-# BookVerse MERN
+# BookIt MERN
 
-BookVerse is a full-stack travel booking platform built with the MERN stack (MongoDB, Express, React, Node.js). It allows two types of users: customers (travelers) and business owners (travel agencies) to interact on a single platform.
+BookIt is a full-stack travel booking platform built with the MERN stack (MongoDB, Express, React, Node.js). It allows two types of users: customers (travelers) and business owners (travel agencies) to interact on a single platform.
 
-## What is BookVerse?
-BookVerse is a travel marketplace where:
+## What is BookIt?
+BookIt is a travel marketplace where:
 - **Customers** can browse, view, and book travel packages from various agencies.
 - **Business Owners** (agencies) can create, manage, and sell their travel packages to customers.
 
@@ -13,12 +13,20 @@ BookVerse is a travel marketplace where:
 - Sign up and log in as a customer.
 - Browse travel agencies and their packages.
 - View package details, images, and inclusions.
-- Book packages, view your bookings, and cancel if needed.
+- Book packages, apply promo codes for discounts, view your bookings, and cancel if needed.
 
 ### For Business Owners
 - Sign up and log in as a business/agency.
-- Create and manage travel packages (add, edit, delete).
+- Create and manage travel packages (add, edit, delete) and add promo codes for special offers.
 - View bookings made by customers for your packages.
+- Accept or cancel bookings as needed.
+- Edit your agency details and profile.
+
+## Promo Code Feature
+
+- **Business Owners** can add promo codes and discounts when creating or editing a package.
+- **Customers** can enter a promo code during booking to receive a discount if the code is valid for that package.
+- The discount is automatically applied to the total price.
 
 ## Project Structure
 - `frontend/` - React app for both customer and business dashboards.
@@ -52,15 +60,14 @@ BookVerse is a travel marketplace where:
 
 ---
 
-
 ## Authentication with Clerk
-BookVerse uses [Clerk](https://clerk.com/) for secure authentication and user management. Both customers and business owners sign up and log in using Clerk, which provides a seamless and secure experience.
+BookIt uses [Clerk](https://clerk.com/) for secure authentication and user management. Both customers and business owners sign up and log in using Clerk, which provides a seamless and secure experience.
 
 ## Business Owner Features
 
 ### Listing and Managing Packages
 - After logging in as a business owner, go to the "Travel Packages" section.
-- Click "Add New Package" to create a new travel package. Fill in details like name, destination, duration, price, description, images, inclusions, and exclusions.
+- Click "Add New Package" to create a new travel package. Fill in details like name, destination, duration, price, description, images, inclusions, exclusions, and promo codes.
 - Edit or delete any package using the "Edit" and "Delete" buttons on each package card.
 
 ### Editing Agency Details
@@ -69,10 +76,28 @@ BookVerse uses [Clerk](https://clerk.com/) for secure authentication and user ma
 ### Managing Bookings
 - View all bookings made by customers for your packages in the "Bookings" section.
 - For each booking, you can:
-	- **Accept** the booking (confirm the reservation for the customer)
-	- **Cancel** the booking (if needed, with a reason)
+    - **Accept** the booking (confirm the reservation for the customer)
+    - **Cancel** the booking (if needed, with a reason)
 
 All actions are available from the business dashboard after logging in with Clerk.
 
 ---
+
+## Scalability
+
+BookIt is designed with scalability in mind:
+- **Backend**: Easily deployable to cloud platforms (like Render, Heroku, AWS, etc.) and can be scaled horizontally.
+- **Frontend**: Can be deployed on Vercel, Netlify, or any static hosting service.
+- **Database**: Uses MongoDB Atlas, which supports scaling as your data grows.
+- **Authentication**: Clerk provides secure, scalable authentication and user management.
+
+You can extend this project with more features, microservices, or integrate with other APIs as your needs grow.
+
+---
+
+**Deployment:**  
+- **Frontend:** Deployed on [Vercel]([https://vercel.com/](https://bookit-topaz-rho.vercel.app/))  
+- **Backend:** Deployed on [Render]([https://render.com/](https://bookit-g5el.onrender.com/))  
+
+
 This project is designed to be simple, user-friendly, and easy to extend for more features.
