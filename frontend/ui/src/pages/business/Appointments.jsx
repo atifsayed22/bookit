@@ -166,10 +166,10 @@ const Appointments = () => {
           { label: "Today", value: stats.today, color: "text-purple-600" },
           { label: "Pending", value: stats.pending, color: "text-yellow-600" },
           { label: "Confirmed", value: stats.confirmed, color: "text-green-600" },
-          { label: "Revenue", value: `$${stats.revenue}`, color: "text-emerald-600" },
+          { label: "Revenue", value: `₹${stats.revenue}`, color: "text-emerald-600" },
         ].map((stat, i) => (
           <div key={i} className="bg-white p-4 rounded-lg shadow text-center">
-            <div className={`text-2xl font-bold ${stat.color}`}>{stat.value}</div>
+            <div className={`text-2xl font-bold ₹{stat.color}`}>{stat.value}</div>
             <div className="text-sm text-gray-600">{stat.label}</div>
           </div>
         ))}
@@ -291,7 +291,7 @@ const Appointments = () => {
                           {status.icon} <span>{status.label}</span>
                         </span>
                       </td>
-                      <td className="px-6 py-4 font-medium">${apt.totalPrice || 0}</td>
+                      <td className="px-6 py-4 font-medium">₹{apt.totalPrice || 0}</td>
                       <td className="px-6 py-4 space-x-2">
                         {apt.status === "pending" && (
                           <div className="flex items-center gap-2">
