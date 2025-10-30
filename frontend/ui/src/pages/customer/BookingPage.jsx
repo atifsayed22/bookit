@@ -424,7 +424,7 @@ const BookingPage = () => {
                   <option value="">Choose a travel package...</option>
                   {packages.map(pkg => (
                     <option key={pkg._id} value={pkg._id}>
-                      {pkg.packageName || pkg.name} - {pkg.destination} - {pkg.durationDays} days - ${pkg.price}
+                      {pkg.packageName || pkg.name} - {pkg.destination} - {pkg.durationDays} days - ₹{pkg.price}
                     </option>
                   ))}
                 </select>
@@ -624,7 +624,7 @@ const BookingPage = () => {
                   <div className="space-y-2 text-sm">
                     <div className="flex justify-between">
                       <span>Package Price per Person:</span>
-                      <span>${packages.find(p => p._id === bookingData.packageId)?.price || 0}</span>
+                      <span>₹{packages.find(p => p._id === bookingData.packageId)?.price || 0}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Number of Travelers:</span>
