@@ -632,17 +632,17 @@ const BookingPage = () => {
                     </div>
                     <div className="flex justify-between font-medium">
                       <span>Subtotal:</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>₹{subtotal.toFixed(2)}</span>
                     </div>
                     {promoDiscount > 0 && (
                       <div className="flex justify-between text-green-600">
                         <span>Discount:</span>
-                        <span>-${promoDiscount.toFixed(2)}</span>
+                        <span>-₹{promoDiscount.toFixed(2)}</span>
                       </div>
                     )}
                     <div className="border-t border-gray-300 pt-2 flex justify-between text-lg font-bold text-blue-600">
                       <span>Total Amount:</span>
-                      <span>${(subtotal - promoDiscount).toFixed(2)}</span>
+                      <span>₹{(subtotal - promoDiscount).toFixed(2)}</span>
                     </div>
                   </div>
                 </div>
