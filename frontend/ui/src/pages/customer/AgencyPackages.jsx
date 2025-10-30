@@ -194,9 +194,9 @@ const AgencyPackages = () => {
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500"
             >
               <option value="all">All Prices</option>
-              <option value="budget">Budget (Under $1,000)</option>
-              <option value="mid">Mid-Range ($1,000 - $3,000)</option>
-              <option value="luxury">Luxury ($3,000+)</option>
+              <option value="budget">Budget (Under ₹1,000)</option>
+              <option value="mid">Mid-Range (₹1,000 - ₹3,000)</option>
+              <option value="luxury">Luxury (₹3,000+)</option>
             </select>
           </div>
 
@@ -326,7 +326,7 @@ const AgencyPackages = () => {
                     <div>
                       <p className="text-xs text-gray-500">Starting from</p>
                       <p className="text-2xl font-bold text-blue-600">
-                        ${pkg.price}
+                        ₹{pkg.price}
                         <span className="text-sm text-gray-500 font-normal">
                           /person
                         </span>
@@ -392,7 +392,7 @@ const AgencyPackages = () => {
               {selectedPackage.packageName || selectedPackage.name}
             </h2>
             <div className="text-blue-600 text-xl font-semibold mb-2">
-              ${selectedPackage.price} <span className="text-sm text-gray-500 font-normal">/person</span>
+              ₹{selectedPackage.price} <span className="text-sm text-gray-500 font-normal">/person</span>
             </div>
             {/* Destination, Duration, Difficulty */}
             <div className="mb-2 text-gray-700">
